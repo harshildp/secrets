@@ -1,0 +1,5 @@
+  <% if flash[type] %>
+    <% flash[type].each do |e| %>
+      <p class='error'><%= e %></p>
+    <% end %>
+  <% end %>

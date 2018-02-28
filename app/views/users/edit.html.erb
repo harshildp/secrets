@@ -1,0 +1,23 @@
+<a href="<%= show_user_path @user.id %>">Back</a>
+<h1>Update User</h1>
+<form action='<%= update_user_path @user.id %>' method="post">
+    <%= render 'shared/errors', type: 'true' %>
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="text" id="name" name = "user[name]" value='<%= @user.name %>'>
+	<input type="text" id="email" name = "user[email]" value='<%= @user.email %>'>
+	<input type="password" id="oldPassword_update" name = "oldPassword" placeholder='Old Password'>    
+	<input type="submit" name="update" value="Update">
+</form>
+<h1>Change Password</h1>
+<form action='<%= update_user_path @user.id %>' method="post">
+    <%= render 'shared/errors', type: 'false' %>
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="password" id="oldPassword_change" name = "oldPassword" placeholder='Old Password'>    
+	<input type="password" id="password" name = "user[password]" placeholder='New Password'>
+	<input type="password" id="password_confirmation" name = "user[password_confirmation]" placeholder='Confirmation Password'>
+	<input type="submit" name="change" value="Change">
+</form>
+
+<%= link_to 'Delete User', delete_user_path(@user.id), data: {confirm: "Are you sure?", method:'delete'} %>

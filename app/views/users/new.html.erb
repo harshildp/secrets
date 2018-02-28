@@ -1,0 +1,11 @@
+<h1>Register a New User</h1>
+<form action='<%= create_user_path %>' method="post">
+    <%= render 'shared/errors', type:'errors'%>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="text" id="name" name = "user[name]" placeholder='Name'>
+	<input type="text" id="email" name = "user[email]" placeholder='Email'>
+	<input type="password" id="password" name = "user[password]" placeholder='Password'>
+	<input type="password" id="password_confirmation" name = "user[password_confirmation]" placeholder='Confirmation Password'>
+	<input type="submit" name="register" value="Register">
+</form>
+<p> Already a member? <a href="<%= login_path %>">Login</a></p>

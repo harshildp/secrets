@@ -1,0 +1,10 @@
+<h1>Please Log In</h1>
+<form action='<%= create_session_path %>' method="post">
+    <%= render 'shared/errors', type: 'errors'%>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="text" id="email" name = "email" placeholder='Email'>
+	<input type="password" id="password" name = "password" placeholder='Password'>
+	<input type="submit" name="Log In" value="Log In">
+</form>
+<p> Not a member? <a href="<%= new_user_path %>">Register</a></p>
+

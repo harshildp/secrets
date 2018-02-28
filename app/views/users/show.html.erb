@@ -1,0 +1,22 @@
+<h1>Welcome, <%= @user.name %></h1>
+<a href="<%= edit_user_path @user.id %>">Edit Profile</a>
+<a href="<%= secrets_path %>">All Secrets</a>
+<form action="<%= create_secret_path @user.id %>" method='post'>
+    <%= render 'shared/errors', type:'errors'%>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea name='content' id='content' placeholder='Your secret to spill'></textarea>
+    <input type='submit' value='Create' name='create'>
+</form>
+<div>
+<h3>Your secrets:</h3>
+    <% @user.secrets.reverse.each do |secret| %>
+        <p><b><%= secret.likes.count %></b> - <%= secret.content %></p>
+        <%= link_to 'Delete', delete_secret_path(secret.id), data: {confirm: "Put your secret to bed?", method:'delete'} %>
+    <% end %>
+</div>
+<div>
+    <h3>Secrets liked:</h3>
+    <% @user.secrets_liked.reject{ |s| @user.secrets.include? s }.reverse.each do |secret| %>
+        <p><b><%= secret.likes.count %></b> - <%= secret.content %></p>
+    <% end %>
+</div>
